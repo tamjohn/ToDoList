@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Popup from './Popup';
 
 function ToDo({text, todo, todos, setTodos}) {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleDeleteClick = () => {
+        setIsOpen(!isOpen);
+    };
+
     const handleDelete = () => {
         setTodos(todos.filter((element) => element.id !== todo.id));
+        setIsOpen(!isOpen);
     };
 
     const handleComplete = () => {
@@ -25,9 +33,16 @@ function ToDo({text, todo, todos, setTodos}) {
                 <button onClick={handleComplete} className="complete-btn">
                     Complete
                 </button>
-                <button onClick={handleDelete} className="trash-btn">
+                <button onClick={handleDeleteClick} className="trash-btn">
                     X
                 </button>
+                {isOpen && <Popup
+                    handleClose={handleDeleteClick}
+                    handleDelete={handleDelete}
+                    content = {<div>
+                        <p>Are you sure you want to delete "{text}"?</p>
+                    </div>}
+                />}
             </div>
         </div>
     );

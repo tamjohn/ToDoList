@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Popup() {
+function Popup(props) {
     return (
         <div className="popup-box">
-            <div className="box"></div>
-            Are you sure you want to delete this item?
+            <div className="box">
+                <button className="yes-btn" 
+                    onClick={props.handleClose}>No</button>
+                <button className="no-btn"
+                    onClick={props.handleDelete}>Yes</button>
+                {props.content}
+            </div>
         </div>
     );
 };
