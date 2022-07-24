@@ -181,10 +181,3 @@ select {
 .no-btn {
   left: 43%;
 }
-
-.date-input {
-  padding: 30px;
-  font-size: 20px;
-  border: black;
-  background: rgb(238, 232, 232);
-}
