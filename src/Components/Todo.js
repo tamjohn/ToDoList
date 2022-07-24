@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
-import Popup from './Popup';
+import DeletePopup from './DeletePopup';
 
 function ToDo({text, todo, todos, setTodos}) {
     var showDate = new Date();
     var displayDate = showDate.toDateString();
-    // var displaytime = showDate.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true});
 
     const [isOpen, setIsOpen] = useState(false);
-
-    /*
-
-    function areEqual(prevProps, nextProps) {
-        return prevProps.displaytime === nextProps.displaytime
-    };
-
-    const timeMemo = React.memo(displaytime, areEqual);
-    */
 
     const handleDeleteClick = () => {
         setIsOpen(!isOpen);
@@ -40,8 +30,8 @@ function ToDo({text, todo, todos, setTodos}) {
     }
 
     return (
-        <div className = 'dateTimeContainer'>
-            Added on: {displayDate} 
+        <div className = 'dateContainer'>
+            Added on: {displayDate}
             <div className='todo'>
                 <li className={`todo-item ${todo.completed ? "completed" : ''}`}>{text}</li>
                 <div>
@@ -51,7 +41,7 @@ function ToDo({text, todo, todos, setTodos}) {
                     <button onClick={handleDeleteClick} className="trash-btn">
                         X
                     </button>
-                    {isOpen && <Popup
+                    {isOpen && <DeletePopup
                         handleClose={handleDeleteClick}
                         handleDelete={handleDelete}
                         content = {<div>

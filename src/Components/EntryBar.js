@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function EntryBar({setInputText, todos, setTodos, inputText}) {
+    const [isOpen, setIsOpen] = useState(false);
+
     const handleInputMsg = (event) => {
-        console.log(event.target.value);
         setInputText(event.target.value);
     };
 
@@ -13,20 +14,24 @@ function EntryBar({setInputText, todos, setTodos, inputText}) {
             {text: inputText, completed: false, id: Math.random() * 1000},
         ]);
         setInputText("");
+        setIsOpen(!isOpen);
     };
+
     return (
-    <form>
-      <input 
-        value = {inputText} 
-        onChange = {handleInputMsg} 
-        type="text" 
-        className="todo-input" 
-        placeholder="Add a new task" 
-        />
-      <button onClick = {handleSubmitToDo} className="enter-button">
-        Enter
-      </button>
-    </form>
+    <div>
+      <form>
+        <input 
+          value = {inputText} 
+          onChange = {handleInputMsg} 
+          type="text" 
+          className="todo-input" 
+          placeholder="Add a new task" 
+          />
+        <button onClick = {handleSubmitToDo} className="enter-button">
+          Enter
+        </button>
+      </form>
+    </div>
     );
 };
 
